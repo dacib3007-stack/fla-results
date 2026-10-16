@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Fort Lauderdale Archers full-width competition results center for Indoor, International and Hunter leagues.">
+<title>Results Center | Fort Lauderdale Archers</title>
+<style>
+  :root{
+    --navy:#0b2348;
+    --navy-2:#11366b;
+    --gold:#f5c542;
+    --gold-soft:#fff5d7;
+    --teal:#118c7c;
+    --ink:#12243b;
+    --muted:#607286;
+    --line:#dce5ef;
+    --back:#f5f8fc;
+    --card:#ffffff;
+    --shadow:0 10px 30px rgba(10,26,55,.08);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:var(--back);color:var(--ink)}
+  a{text-decoration:none;color:inherit}
+  button,input{font:inherit}
+  .page{min-height:100vh}
+  .wrap{max-width:none;margin:0 auto;width:calc(100% - 64px)}
+  .hero{background:linear-gradient(135deg,#081a37 0%,#0d2b58 62%,#173f79 100%);color:#fff;position:relative;overflow:hidden}
+  .hero:before,.hero:after{content:"";position:absolute;border-radius:50%;pointer-events:none}
+  .hero:before{width:640px;height:640px;right:-250px;top:-420px;border:1px solid rgba(255,255,255,.18);box-shadow:0 0 0 100px rgba(255,255,255,.05),0 0 0 200px rgba(255,255,255,.04)}
+  .hero:after{width:340px;height:340px;left:-120px;bottom:-160px;background:radial-gradient(circle at center,rgba(245,197,66,.22),rgba(245,197,66,0) 72%)}
+  .topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 0;position:relative;z-index:1}
+  .brand{display:flex;align-items:center;gap:14px;min-width:0}
+  .mark{width:50px;height:50px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 8px 20px rgba(0,0,0,.18);flex:0 0 auto}
+  .brand-text{font-weight:900;line-height:1.05;text-transform:uppercase;letter-spacing:.08em;font-size:15px}
+  .brand-text small{display:block;margin-top:6px;font-size:10px;letter-spacing:.18em;opacity:.78}
+  .site-btn{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.28);border-radius:999px;color:#fff;padding:10px 15px;font-size:13px;font-weight:700;white-space:nowrap;background:rgba(255,255,255,.06)}
+  .site-btn:hover{background:rgba(255,255,255,.12)}
+  .hero-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr);gap:30px;align-items:center;padding:18px 0 46px;position:relative;z-index:1}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+  .eyebrow:before{content:"";width:24px;height:3px;background:var(--gold);border-radius:999px}
+  h1{font-size:clamp(38px,5.2vw,68px);line-height:1.02;letter-spacing:-.05em;margin:16px 0 16px;font-weight:900}
+  h1 em{font-style:normal;color:var(--gold)}
+  .lede{max-width:620px;color:#d6e0ef;font-size:17px;line-height:1.7;margin:0 0 22px}
+  .hero-pills{display:flex;flex-wrap:wrap;gap:10px}
+  .pill{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:9px 13px;font-size:12px;font-weight:700;color:#eef4ff}
+  .hero-art{display:grid;place-items:center;min-height:280px}
+  .hero-card{width:min(100%,390px);background:rgba(255,255,255,.08);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.12);border-radius:22px;padding:22px;box-shadow:0 20px 40px rgba(0,0,0,.16)}
+  .mini-target{display:grid;place-items:center;padding:6px 0 16px}
+  .hero-card h2{font-size:20px;margin:0 0 8px;color:#fff}
+  .hero-card p{margin:0;color:#d9e4f1;font-size:14px;line-height:1.6}
+  .hero-card ul{margin:16px 0 0;padding:0;list-style:none;display:grid;gap:10px}
+  .hero-card li{display:flex;justify-content:space-between;gap:18px;padding:10px 0;border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:#eef3fb}
+  .hero-card strong{color:#fff}
+  .status{display:inline-flex;align-items:center;gap:7px;font-weight:800;color:#fff;font-size:12px}
+  .status:before{content:"";width:8px;height:8px;border-radius:50%;background:#45d58b;box-shadow:0 0 0 5px rgba(69,213,139,.18)}
+  .main{padding:36px 0 48px}
+  .intro{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-bottom:28px}
+  .summary{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 22px 20px;box-shadow:var(--shadow)}
+  .summary .top{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}
+  .badge{font-size:11px;text-transform:uppercase;letter-spacing:.14em;font-weight:900;color:var(--navy-2);margin-bottom:9px}
+  .summary h3{margin:0 0 8px;font-size:23px;letter-spacing:-.03em}
+  .summary p{margin:0;color:var(--muted);font-size:14px;line-height:1.65}
+  .tag{padding:8px 10px;border-radius:999px;font-size:11px;font-weight:800;white-space:nowrap}
+  .tag.indoor{background:#eaf1fc;color:#295ab1}
+  .tag.international{background:var(--gold-soft);color:#9a6c00}
+  .tag.hunter{background:#e4f6f2;color:#157065}
+  .summary-footer{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-top:16px;margin-top:18px;border-top:1px solid #edf2f7}
+  .summary small{font-size:12px;color:var(--muted);font-weight:700}
+  .jump{display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:#fff;padding:10px 14px;border-radius:10px;font-size:12px;font-weight:800}
+  .jump:hover{background:var(--navy-2)}
+  .dashboard{display:grid;grid-template-columns:minmax(255px,23%) minmax(0,1fr);gap:22px;align-items:start}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow)}
+  .sidebar{padding:18px}
+  .sidebar h2{margin:4px 0 8px;font-size:24px;letter-spacing:-.03em}
+  .sidebar p{margin:0 0 18px;color:var(--muted);font-size:14px;line-height:1.65}
+  .tabs{display:grid;gap:12px}
+  .tab{display:flex;align-items:flex-start;gap:12px;text-align:left;width:100%;padding:16px;border-radius:16px;border:1px solid #dfe7f0;background:#fff;color:var(--ink);cursor:pointer;transition:.18s ease}
+  .tab:hover{border-color:#b7c8df;transform:translateY(-1px)}
+  .tab.active{background:#f0f5fd;border-color:#bfd0ea;box-shadow:inset 0 0 0 1px #bfd0ea}
+  .tab-icon{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;flex:0 0 auto}
+  .tab-icon.indoor{background:#eaf1fc;color:#2b59ad}
+  .tab-icon.international{background:var(--gold-soft);color:#9a6c00}
+  .tab-icon.hunter{background:#e4f6f2;color:#157065}
+  .tab strong{display:block;font-size:15px;margin-bottom:4px}
+  .tab span{display:block;color:var(--muted);font-size:12px;line-height:1.55}
+  .mini-note{margin-top:16px;padding:14px 15px;border-radius:14px;background:#f6f9fc;border:1px dashed #c8d5e5;color:var(--muted);font-size:12px;line-height:1.6}
+  .viewer{overflow:hidden}
+  .viewer-head{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;padding:24px 24px 16px;border-bottom:1px solid #edf2f7}
+  .viewer-copy h2{margin:0 0 6px;font-size:30px;letter-spacing:-.04em}
+  .viewer-copy p{margin:0;color:var(--muted);font-size:14px;line-height:1.65;max-width:650px}
+  .viewer-actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;font-size:12px;font-weight:800;border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer}
+  .btn.primary{background:var(--navy);border-color:var(--navy);color:#fff}
+  .btn.primary:hover{background:var(--navy-2)}
+  .btn:hover{border-color:#b9c7d7}
+  .viewer-meta{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding:18px 24px}
+  .meta{background:#f7f9fc;border:1px solid #e5edf5;border-radius:14px;padding:14px 15px}
+  .meta .label{font-size:11px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:#6d7c91;margin-bottom:7px}
+  .meta .value{font-size:15px;font-weight:800;color:var(--ink);line-height:1.4}
+  .scores-content{padding:24px}
+  .score-pending{min-height:400px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(145deg,#f9fbff,#f2f7fe);border:1px dashed #c6d6ec;border-radius:18px;padding:42px 28px}
+  .score-pending h3{margin:14px 0 9px;font-size:24px;letter-spacing:-.035em}
+  .score-pending p{margin:0 0 22px;color:var(--muted);font-size:14px;line-height:1.75;max-width:560px}
+  .score-pending-icon{display:grid;place-items:center}
+  .score-hint{display:block;color:#71829a;font-size:12px;margin-top:16px}
+  .score-toolbar{display:flex;align-items:end;justify-content:space-between;gap:15px;margin-bottom:18px}
+  .score-search{font-size:12px;font-weight:800;color:#596d83;display:grid;gap:7px;flex:1;max-width:390px}
+  .score-search input{padding:12px;border:1px solid #c9d6e8;border-radius:11px;outline-offset:3px;background:white}
+  .score-count{font-size:13px;color:#607286}
+  .table-scroll{overflow:auto;border:1px solid #dce5ef;border-radius:16px}
+  .score-table{width:100%;border-collapse:collapse;min-width:670px;font-size:13px;text-align:left}
+  .score-table th{position:sticky;top:0;white-space:nowrap;background:#0d2b58;color:#fff;text-align:left}
+  .score-table .sort-column{font-weight:800;background:transparent;border:0;color:#fff;padding:14px 15px;cursor:pointer;text-align:left;white-space:nowrap}
+  .score-table td{padding:13px 15px;border-bottom:1px solid #edf1f6;color:#1d3553}
+  .score-table tbody tr:nth-child(even){background:#f8fafd}
+  .score-table tbody tr:hover{background:#eaf1fb}
+  [hidden]{display:none!important}
+  .footnote{padding:0 24px 24px;color:#728198;font-size:12px;line-height:1.65}
+  .footnote strong{color:var(--ink)}
+  .helper{margin-top:26px;padding:22px 24px;background:#edf3fb;border:1px solid #dbe5f2;border-radius:18px}
+  .helper h3{margin:0 0 8px;font-size:19px;letter-spacing:-.02em}
+  .helper p{margin:0 0 14px;color:var(--muted);font-size:14px;line-height:1.7}
+  .helper ul{margin:0;padding-left:18px;color:var(--ink)}
+  .helper li{margin:8px 0;color:var(--muted);font-size:14px;line-height:1.65}
+  .helper li strong{color:var(--ink)}
+  @media (max-width:1100px){
+    .intro{grid-template-columns:1fr}
+    .dashboard{grid-template-columns:1fr}
+    .viewer-meta{grid-template-columns:repeat(2,minmax(0,1fr))}
+  }
+  @media (max-width:760px){
+    .wrap{width:calc(100% - 28px)}
+    .topbar{padding:16px 0}
+    .brand-text{font-size:13px}
+    .hero-grid{grid-template-columns:1fr;padding:8px 0 34px}
+    .hero-art{min-height:0}
+    .hero-card{width:100%}
+    .main{padding-top:28px}
+    .viewer-head{padding:18px 18px 14px;flex-direction:column;align-items:stretch}
+    .viewer-meta{padding:16px 18px;grid-template-columns:1fr}
+    .scores-content{padding:18px}
+    .score-pending{min-height:340px;padding:30px 16px}
+    .score-pending h3{font-size:21px}
+    .score-toolbar{flex-direction:column;align-items:stretch}
+    .score-search{max-width:none}
+    .footnote{padding:0 18px 18px}
+    .sidebar{padding:16px}
+    .helper{padding:18px}
+  }
+  @media(min-width:1600px){ .wrap{width:calc(100% - 100px)} .hero-grid{padding:34px 0 62px} }
+  @media(max-width:760px){ .wrap{width:calc(100% - 28px)} }
+  html{scroll-behavior:smooth}
+  :focus-visible{outline:3px solid #ecb92b;outline-offset:3px}
+</style>
+</head>
+<body>
+<div class="page" id="fla-results">
+  <section class="hero">
+    <div class="wrap">
+      <div class="topbar">
+        <div class="brand">
+          <div class="mark" aria-hidden="true">
+            <svg viewBox="0 0 40 40" width="33" height="33" fill="none"><circle cx="20" cy="20" r="17" fill="#2551A4"/><circle cx="20" cy="20" r="12.2" fill="#F4CD3A"/><circle cx="20" cy="20" r="8.1" fill="#fff"/><circle cx="20" cy="20" r="3.9" fill="#E64B42"/><circle cx="20" cy="20" r="1.2" fill="#0B2143"/></svg>
+          </div>
+          <div class="brand-text">Fort Lauderdale<br>Archers<small>Results center</small></div>
+        </div>
+        <a class="site-btn" href="https://www.fortlauderdalearchers.com/" rel="noopener noreferrer">← Back to club website</a>
+      </div>
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">League results made easier</div>
+          <h1>Every arrow.<br><em>Every result.</em></h1>
+          <p class="lede">Find results for Indoor, International, and Hunter League in one full-width results center. Select a league below to see its dedicated results area.</p>
+          <div class="hero-pills">
+            <div class="pill">Indoor League</div>
+            <div class="pill">International League</div>
+            <div class="pill">Hunter League</div>
+            <div class="pill">Mobile friendly</div>
+          </div>
+        </div>
+        <div class="hero-art">
+          <div class="hero-card">
+            <div class="mini-target" aria-hidden="true">
+              <svg viewBox="0 0 320 190" width="100%" height="168" fill="none">
+                <circle cx="162" cy="93" r="76" fill="#fff" opacity=".14"/>
+                <circle cx="162" cy="93" r="68" fill="#234d97"/>
+                <circle cx="162" cy="93" r="52" fill="#1f2d43"/>
+                <circle cx="162" cy="93" r="38" fill="#e24c4c"/>
+                <circle cx="162" cy="93" r="24" fill="#f5c542"/>
+                <circle cx="162" cy="93" r="10" fill="#fff4b2"/>
+                <g transform="translate(163 92) rotate(-38)">
+                  <rect x="-2.5" y="-92" width="5" height="110" rx="2.5" fill="#fff"/>
+                  <path d="M-2.5 -92 L0 -105 L2.5 -92 Z" fill="#f5c542"/>
+                  <path d="M-4 12 -20 34 -2 27Z" fill="#f5c542"/>
+                  <path d="M4 12 20 34 2 27Z" fill="#e6edf7"/>
+                </g>
+              </svg>
+            </div>
+            <h2>New results experience</h2>
+            <p>A cleaner way to explore each league, with room for searchable standings and round-by-round scores.</p>
+            <ul>
+              <li><span>Page layout</span><strong>Full width</strong></li>
+              <li><span>Current leagues</span><strong>3 published</strong></li>
+              <li><span>External embeds</span><strong>None</strong></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="main">
+    <div class="wrap">
+      <section class="intro" aria-label="League summaries">
+        <article class="summary">
+          <div class="top">
+            <div>
+              <div class="badge">League summary</div>
+              <h3>Indoor League</h3>
+              <p>Winter indoor results for the 2025–2026 season.</p>
+            </div>
+            <span class="tag indoor">2025–2026</span>
+          </div>
+          <div class="summary-footer">
+            <small>Official results available</small>
+            <a href="#viewer" class="jump" data-league-link="indoor">Select league</a>
+          </div>
+        </article>
+        <article class="summary">
+          <div class="top">
+            <div>
+              <div class="badge">League summary</div>
+              <h3>International League</h3>
+              <p>Published 2026 International League score page.</p>
+            </div>
+            <span class="tag international">2026</span>
+          </div>
+          <div class="summary-footer">
+            <small>Official results available</small>
+            <a href="#viewer" class="jump" data-league-link="international">Select league</a>
+          </div>
+        </article>
+        <article class="summary">
+          <div class="top">
+            <div>
+              <div class="badge">League summary</div>
+              <h3>Hunter League</h3>
+              <p>Published 2026 Hunter League score page.</p>
+            </div>
+            <span class="tag hunter">2026</span>
+          </div>
+          <div class="summary-footer">
+            <small>Official results available</small>
+            <a href="#viewer" class="jump" data-league-link="hunter">Select league</a>
+          </div>
+        </article>
+      </section>
+
+      <section class="dashboard" id="viewer">
+        <aside class="panel sidebar">
+          <h2>League results</h2>
+          <p>Choose a league. Its official results link appears below. Searchable standings can be displayed here once the club’s score data is added.</p>
+          <div class="tabs" role="tablist" aria-label="League results tabs">
+            <button class="tab active" type="button" role="tab" aria-selected="true" data-league="indoor">
+              <div class="tab-icon indoor" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 3v18"/><path d="m13.5 15 2 2 4-5"/></svg>
+              </div>
+              <div><strong>Indoor League</strong><span>2025–2026 season results</span></div>
+            </button>
+            <button class="tab" type="button" role="tab" aria-selected="false" data-league="international">
+              <div class="tab-icon international" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9"/><path d="M3.6 9h16.8"/><path d="M3.6 15h16.8"/><path d="M12 3a15 15 0 0 1 0 18"/><path d="M12 3a15 15 0 0 0 0 18"/></svg>
+              </div>
+              <div><strong>International League</strong><span>2026 published results</span></div>
+            </button>
+            <button class="tab" type="button" role="tab" aria-selected="false" data-league="hunter">
+              <div class="tab-icon hunter" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="m5 12 7-7 7 7"/><path d="m5 12 7 7 7-7"/></svg>
+              </div>
+              <div><strong>Hunter League</strong><span>2026 published results</span></div>
+            </button>
+          </div>
+          
+        </aside>
+
+        <section class="panel viewer" aria-live="polite">
+          <div class="viewer-head">
+            <div class="viewer-copy">
+              <h2 id="league-title">Indoor League</h2>
+              <p id="league-description">2025–2026 Indoor League results.</p>
+            </div>
+            <div class="viewer-actions">
+              <a class="btn primary" id="open-full" href="https://www.fortlauderdalearchers.com/score-results/2025-2026-indoor-league" target="_blank" rel="noopener noreferrer">Open official score page ↗</a>
+            </div>
+          </div>
+          <div class="viewer-meta" id="meta-grid">
+            <div class="meta"><div class="label">League</div><div class="value" id="meta-league">Indoor League</div></div>
+            <div class="meta"><div class="label">Season</div><div class="value" id="meta-season">2025–2026</div></div>
+            <div class="meta"><div class="label">Format</div><div class="value" id="meta-format">Full-page results center</div></div>
+            <div class="meta"><div class="label">Published source</div><div class="value" id="meta-source">fortlauderdalearchers.com</div></div>
+          </div>
+          <div class="scores-content">
+            <div class="score-toolbar" id="score-toolbar" hidden>
+              <label class="score-search" for="score-search">Search archers
+                <input id="score-search" type="search" placeholder="Type a name or class…" autocomplete="off" />
+              </label>
+              <div class="score-count" id="score-count"></div>
+            </div>
+            <div class="table-scroll" id="table-scroll" hidden>
+              <table class="score-table" id="score-table"><thead></thead><tbody></tbody></table>
+            </div>
+            <div class="score-pending" id="score-pending">
+              <div class="score-pending-icon" aria-hidden="true">
+                <svg viewBox="0 0 56 56" width="58" height="58" fill="none"><circle cx="28" cy="28" r="25" fill="#eef4ff"/><circle cx="28" cy="28" r="18" stroke="#285db4" stroke-width="3"/><circle cx="28" cy="28" r="11" stroke="#285db4" stroke-width="3"/><circle cx="28" cy="28" r="4" fill="#f5c542"/></svg>
+              </div>
+              <h3>Native score tables are coming next</h3>
+              <p>We removed the blocked website embed. This page can display scores in a searchable table, but it needs the original league score data first. For now, the official published score page opens separately.</p>
+              <a class="btn primary" id="open-pending" href="https://www.fortlauderdalearchers.com/score-results/2025-2026-indoor-league" target="_blank" rel="noopener noreferrer">View official league scores ↗</a>
+              <span class="score-hint">No website embedding · No connection errors</span>
+            </div>
+          </div>
+          <div class="footnote"><strong>Club administrators:</strong> To enable built-in standings, provide the original Excel score sheets for Indoor, International, and Hunter League. These can be converted into native tables, without any external embedded pages.</div>
+        </section>
+      </section>
+</div>
+  </main>
+</div>
+
+<script>
+  const leagues = {
+    indoor: {
+      title: 'Indoor League',
+      desc: '2025–2026 Indoor League results.',
+      season: '2025–2026',
+      format: 'Full-page results center',
+      url: 'https://www.fortlauderdalearchers.com/score-results/2025-2026-indoor-league'
+    },
+    international: {
+      title: 'International League',
+      desc: '2026 International League results.',
+      season: '2026',
+      format: 'Full-page results center',
+      url: 'https://www.fortlauderdalearchers.com/score-results/2026-international'
+    },
+    hunter: {
+      title: 'Hunter League',
+      desc: '2026 Hunter League results.',
+      season: '2026',
+      format: 'Full-page results center',
+      url: 'https://www.fortlauderdalearchers.com/score-results/2026-hunter-league'
+    }
+  };
+
+  const tabs = Array.from(document.querySelectorAll('.tab'));
+  const jumpLinks = Array.from(document.querySelectorAll('[data-league-link]'));
+  const titleEl = document.getElementById('league-title');
+  const descEl = document.getElementById('league-description');
+  const scoreSearch = document.getElementById('score-search');
+  const scoreToolbar = document.getElementById('score-toolbar');
+  const scoreTableWrap = document.getElementById('table-scroll');
+  const scorePending = document.getElementById('score-pending');
+  const scoreCount = document.getElementById('score-count');
+  const scoreTable = document.getElementById('score-table');
+  const openPending = document.getElementById('open-pending');
+  const scoreData = { indoor: [], international: [], hunter: [] };
+  let selectedLeague = 'indoor';
+  let selectedSortKey = null;
+  let sortAsc = false;
+
+  function escapeHtml(value){
+    return String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;', "'":'&#39;'}[c]));
+  }
+  function displayScores(){
+    const rows = scoreData[selectedLeague] || [];
+    const present = rows.length > 0;
+    scoreToolbar.hidden = !present;
+    scoreTableWrap.hidden = !present;
+    scorePending.hidden = present;
+    if(!present) return;
+    const headers = [...new Set(rows.flatMap(row => Object.keys(row)))];
+    let filtered = rows.filter(row => Object.values(row).join(' ').toLowerCase().includes(scoreSearch.value.trim().toLowerCase()));
+    if(selectedSortKey && headers.includes(selectedSortKey)){
+      filtered = [...filtered].sort((a,b) => {
+        const x = String(a[selectedSortKey] ?? '').trim();
+        const y = String(b[selectedSortKey] ?? '').trim();
+        const aNum=Number(x.replace(/,/g,'')), bNum=Number(y.replace(/,/g,''));
+        const cmp = x!=='' && y!=='' && Number.isFinite(aNum) && Number.isFinite(bNum) ? aNum-bNum : x.localeCompare(y,undefined,{numeric:true,sensitivity:'base'});
+        return sortAsc ? cmp : -cmp;
+      });
+    }
+    scoreCount.textContent = `${filtered.length} of ${rows.length} archers`;
+    scoreTable.querySelector('thead').innerHTML = '<tr>' + headers.map(h => `<th scope="col"><button type="button" class="sort-column" data-key="${escapeHtml(h)}" title="Sort by ${escapeHtml(h)}">${escapeHtml(h)} <span aria-hidden="true">${selectedSortKey===h ? (sortAsc ? '↑' : '↓') : '↕'}</span></button></th>`).join('') + '</tr>';
+    scoreTable.querySelector('tbody').innerHTML = filtered.map(row => '<tr>' + headers.map(h => `<td>${escapeHtml(row[h])}</td>`).join('') + '</tr>').join('');
+    scoreTable.querySelectorAll('button.sort-column').forEach(btn => btn.addEventListener('click', () => {
+      const key = btn.dataset.key;
+      if(selectedSortKey===key) sortAsc=!sortAsc;
+      else {selectedSortKey=key; sortAsc=true;}
+      displayScores();
+    }));
+  }
+  scoreSearch.addEventListener('input', displayScores);
+  const openFullEl = document.getElementById('open-full');
+  const metaLeague = document.getElementById('meta-league');
+  const metaSeason = document.getElementById('meta-season');
+  const metaFormat = document.getElementById('meta-format');
+
+
+  function setLeague(key){
+    const league = leagues[key];
+    if(!league) return;
+
+    tabs.forEach(tab => {
+      const active = tab.dataset.league === key;
+      tab.classList.toggle('active', active);
+      tab.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+
+    titleEl.textContent = league.title;
+    descEl.textContent = league.desc;
+    metaLeague.textContent = league.title;
+    metaSeason.textContent = league.season;
+    metaFormat.textContent = league.format;
+    openFullEl.href = league.url;
+    openPending.href = league.url;
+    selectedLeague = key;
+    selectedSortKey = null;
+    scoreSearch.value = '';
+    displayScores();
+  }
+
+  tabs.forEach(tab => tab.addEventListener('click', () => setLeague(tab.dataset.league)));
+  jumpLinks.forEach(link => link.addEventListener('click', () => setLeague(link.dataset.leagueLink)));
+
+</script>
+</body>
+</html>
